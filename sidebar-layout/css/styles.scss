@@ -1,0 +1,64 @@
+@charset "utf-8";
+@import "partial/settings";
+
+/* Styles.scss */
+.o-page {
+    font-family: 'myfont';
+    line-height: 1.6;
+    &__inner {
+        display: grid;
+        grid-template-rows: [header] auto [main] auto [aside] auto [footer] auto;
+        grid-template-columns: [main] 1fr;
+        max-width: 1180px;
+        margin: auto;
+        color: map-get($nord, nord6);
+        text-align: center;
+    }
+}
+
+.header, .footer {
+    background-color: map-get($nord, nord2);
+}
+
+.header {
+    grid-row: header;
+}
+
+.main,
+.aside {
+    color: map-get($nord, nord0);
+}
+
+.main {
+    grid-row: main;
+    padding: 3rem 0;
+    background-color: map-get($nord, nord6);
+}
+
+.aside {
+    grid-row: aside;
+    padding: 1.5rem 0;
+    background-color: map-get($nord, nord8);
+}
+
+.footer {
+    grid-row: footer;
+}
+
+@media all and (min-width: 60em) {
+    .o-page__inner {
+        grid-template-rows: [header] auto [main] auto [footer] auto;
+        grid-template-columns: [main] 2fr [aside] 1fr;  
+    }
+
+    .header, .footer {
+        grid-column-start: main;
+        grid-column-end: 3;
+    }
+
+    .aside {
+        grid-column: aside;
+        grid-row-start: main;
+        padding: 3rem 0;
+    }
+}
