@@ -1,0 +1,166 @@
+@charset "UTF-8";
+/* _Settings.scss */
+html, body,
+h1, h2, h3, h4, h5, h6,
+a, p, span,
+em, small, strong,
+sub, sup,
+mark, del, ins, strike,
+abbr, dfn,
+blockquote, q, cite,
+code, pre,
+ol, ul, li, dl, dt, dd,
+div, section, article,
+main, aside, nav,
+header, hgroup, footer,
+img, picture, figure, figcaption,
+address, time,
+audio, video,
+canvas, iframe,
+details, summary,
+fieldset, form, label, legend,
+table, caption,
+tbody, tfoot, thead,
+tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+}
+
+html {
+  /* How the user agent should calculate the total width and height of an element.
+    See: https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
+    See: https://allthingssmitty.com/2017/01/09/css-reset-for-minimalists */
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* Prevent adjustments of font size after orientation changes in iOS. */
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+a, a:visited {
+  color: inherit;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section,
+main {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+b, strong {
+  font-weight: bolder;
+}
+
+small {
+  font-size: 80%;
+}
+
+img, video {
+  max-width: 100%;
+  /* Remove vertical spacing due to line-height (inline-block elements) */
+  vertical-align: middle;
+}
+
+/* A11y warning ≈ alt attribute. */
+img[alt=""], img:not([alt]) {
+  border: 4px dashed #830000;
+}
+
+/* A11y warning ≈ aria label. */
+[role="img"]:not([aria-label]):not([aria-labelledby]),
+svg[role="img"]:not([aria-label]):not([aria-labelledby]) {
+  border: 4px dashed #830000;
+}
+
+/* Font loading. */
+@font-face {
+  font-family: 'myfont';
+  src: url("../fonts/myfont.woff2") format("woff2"), url("../fonts/myfont.woff") format("woff");
+  /* Unicode-range subsetting defines the characters that are supported by the font. 
+    See: https://unicode-table.com/en */
+  unicode-range: U+0020—007F, U+0100—017F, 0400—04FF;
+  font-style: normal;
+  font-weight: 400;
+  /* How font files are loaded and displayed by the browser. */
+  font-display: swap;
+}
+
+/* Styles.scss */
+.o-page {
+  font-family: 'myfont';
+  line-height: 1.6;
+}
+
+.o-page__inner {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: [header] auto [main] auto [section] auto [footer] auto;
+      grid-template-rows: [header] auto [main] auto [section] auto [footer] auto;
+  -ms-grid-columns: [main] 1fr;
+      grid-template-columns: [main] 1fr;
+  max-width: 100%;
+  margin: auto;
+  color: #eceff4;
+  text-align: center;
+}
+
+.header, .footer {
+  background-color: #434c5e;
+}
+
+.header {
+  grid-row: header;
+}
+
+.main,
+.section {
+  color: #2e3440;
+}
+
+.main {
+  grid-row: main;
+  padding: 3rem 0;
+  background-color: #88c0d0;
+}
+
+.section {
+  grid-row: section;
+  padding: 1.5rem 0;
+  background-color: #eceff4;
+}
+
+.footer {
+  grid-row: footer;
+}
+
+@media all and (min-width: 60em) {
+  .o-page__inner {
+    -ms-grid-rows: [header] auto [main] auto [section] auto [footer] auto;
+        grid-template-rows: [header] auto [main] auto [section] auto [footer] auto;
+    -ms-grid-columns: 1fr [main] minmax(auto, 1180px) 1fr;
+        grid-template-columns: 1fr [main] minmax(auto, 1180px) 1fr;
+  }
+  .header, .footer, .section {
+    grid-column: main;
+  }
+  .main {
+    -ms-grid-column: 1;
+        grid-column-start: 1;
+    grid-column-end: 4;
+  }
+}
+/*# sourceMappingURL=styles.css.map */
