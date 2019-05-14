@@ -1,0 +1,83 @@
+@charset "utf-8";
+@import "partial/settings";
+
+/* Styles.scss */
+.o-page {
+    font-family: 'myfont';
+    line-height: 1.6;
+    &__inner {
+        display: grid;
+        grid-template-rows: [header] auto [main] auto [section-left] auto [aside] auto [section-right] auto [footer] auto;
+        grid-template-columns: [main] 1fr;
+        max-width: 1180px;
+        margin: auto;
+        color: map-get($nord, nord0);
+        text-align: center;
+    }
+}
+
+.header, .footer {
+    color: map-get($nord, nord6);
+    background-color: map-get($nord, nord2);
+}
+
+.header {
+    grid-row: header;
+}
+
+.main {
+    grid-row: main;
+    padding: 3rem 0;
+    background-color: map-get($nord, nord6);
+}
+
+.section--left {
+    grid-row: section-left;
+    background-color: map-get($nord, nord14);
+}
+
+.section--right {
+    grid-row: section-right;
+    background-color: map-get($nord, nord13);
+}
+
+[class^="section--"],
+.aside {
+    padding: 1.5rem 0;
+}
+
+.aside {
+    grid-row: aside;
+    background-color: map-get($nord, nord8);
+}
+
+.footer {
+    grid-row: footer;
+}
+
+@media all and (min-width: 60em) {
+    .o-page__inner {
+        grid-template-rows: [header] auto [main] auto [section--] auto [footer] auto;
+        grid-template-columns: [main] 1fr [section--] 1fr [aside] 1fr;  
+    }
+
+    .header, .footer {
+        grid-column-start: main;
+        grid-column-end: 4;
+    }
+
+    .main {
+        grid-column-start: main;
+        grid-column-end: aside;
+    }
+
+    [class^="section--"] {
+        grid-row: section--;
+    }
+
+    .aside {
+        grid-row-start: main;
+        grid-column-start: aside;
+        padding: 3rem 0;
+    }
+}
