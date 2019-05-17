@@ -1,0 +1,84 @@
+@charset "utf-8";
+@import "partial/settings";
+
+/* Styles.scss */
+.o-page {
+    font-family: 'myfont';
+    line-height: 1.6;
+    &__inner {
+        display: grid;
+        grid-template-rows: [topbar] auto [main] auto [section] auto [footer] auto;
+        grid-template-columns: [main] 1fr;
+        max-width: 100%;
+        margin: auto;
+        color: map-get($nord, nord6);
+        text-align: center;
+    }
+}
+
+.nav {
+    grid-row: topbar;
+    background-color: map-get($nord, nord11);
+}
+
+.main,
+.section {
+    color: map-get($nord, nord0);
+}
+
+.main {
+    grid-row: main;
+    padding: 3rem 0;
+    background-color: map-get($nord, nord6);
+}
+
+.section {
+    grid-row: section;
+    padding: 1.5rem 0;
+    background-color: map-get($nord, nord8);
+}
+
+.footer {
+    grid-row: footer;
+    background-color: map-get($nord, nord2);
+}
+
+
+@media all and (min-width: 60em) {
+    .o-page__inner {
+        grid-template-rows: [topbar] auto [main] auto [section] auto [footer] auto;
+        grid-template-columns: 1fr [main] minmax(auto, 1180px) 1fr; 
+    }
+
+    .main, .footer, .section {
+        grid-column: main;
+    }
+
+    .nav {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        position: fixed;
+        width: 100%;
+        background-color: map-get($nord, nord11);
+        &--is-active {
+            background-color: map-get($nord, nord2);
+        }
+        &__inner {
+            display: flex;
+            align-items: center;
+            max-width: 1180px;
+            height: 100px;
+            margin: auto;
+            padding: 1.5rem;
+
+            p:last-of-type {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .main {
+        height: 1200px;
+        margin-top: 100px;
+    }
+}
